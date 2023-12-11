@@ -81,3 +81,10 @@ def see_buying_list(id):
     items = db.session.query(Cart).filter_by(buyer_id = history.hbuyer.id).all()
     totalprice = sum([i.pet.price for i in items])
     return render_template('admin/buying_list.html', items=items, totalprice=totalprice, title="Buying List")
+
+@admin_bp.route("/delete_pet/<int:pet_id>")
+def delete_pet(pet_id):
+    pet = db.session.query(Pet).filter_by(id=pet_id).first()
+    db.session.delete(pet)
+    db.session.commit()
+    return redirect(url_for('admin_bp.see_all_pets'))

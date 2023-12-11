@@ -23,7 +23,7 @@
         <td>{{pet.owner.phone}}</td>
         <td>
             <!-- <a href="" class="btn btn-sm btn-warning">Update</a> -->
-            <a href="" class="btn btn-sm btn-danger">Delete</a>
+            <a href="{{url_for("admin_bp.delete_pet",pet_id=pet.id)}}" class="btn btn-sm btn-danger">Delete</a>
         </td>
       </tr>
       {%endfor%}

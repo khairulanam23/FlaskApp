@@ -77,8 +77,4 @@ class Cart(db.Model):
     pet_id = Column(ForeignKey('pets.id'), nullable=False)
     buyer_id = Column(ForeignKey('users.id'), nullable=False)
     is_sold = Column(Boolean, default=False)
-
-    
-
-
-
+#tankyou

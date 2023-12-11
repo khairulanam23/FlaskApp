@@ -14,15 +14,6 @@ def view_cart():
         return render_template('cart/cart.html', carts = carts, total_price=total_price)
     return redirect(url_for('home'))
 
-'''
-class Cart(db.Model):
-    __tablename__ = 'carts'
-    id = Column(Integer, primary_key=True, nullable=False)
-    pet_id = Column(ForeignKey('pets.id'), nullable=False)
-    buyer_id = Column(ForeignKey('users.id'), nullable=False)
-    total_price = Column(Integer, nullable=False)
-
-'''
 
 @cart_bp.route('/add-to-cart/<int:id>')
 def add_to_cart(id):
@@ -33,7 +24,7 @@ def add_to_cart(id):
             cart = Cart(pet_id=pet.id, buyer_id=user_id)
             db.session.add(cart)
             db.session.commit()
-            return "Added Successfully"
+            return redirect(url_for("cart_bp.view_cart"))
     return "Can't Added the same pet twice"
 
 @cart_bp.route("/remove-from-cart/<int:id>")
@@ -56,4 +47,3 @@ def checkout():
     db.session.add(instance)
     db.session.commit()
     return "<h1>Thanks For Buying From Us</h1>"
-    
