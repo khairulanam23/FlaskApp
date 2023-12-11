@@ -1,0 +1,32 @@
+{%extends 'base.html' %}
+{%block title%}{{title}}{%endblock title%}
+
+{%block main%}
+{%if is_loggedin%}
+<h3 class="text-center mt-2">All Pets</h3>
+<div class="container-fluid d-flex">
+    {%for pet in pets%}
+    <div class="card my-1 mx-3" style="width: 18rem;">
+        <img class="card-img-top" src="{{url_for('static', filename='media/' + pet.image)}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Name: {{pet.name}}</h5>
+          <p class="card-text"> Description: {{pet.description | truncate(150) }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Species: {{pet.species}}</li>
+          <li class="list-group-item">Breed: {{pet.breed}}</li>
+          <li class="list-group-item">Age: {{pet.age}}</li>
+          <li class="list-group-item">Price: {{pet.price}}Tk</li>
+        </ul>
+        <div class="card-body ">
+          <a href="{{url_for('cart_bp.add_to_cart', id= pet.id)}}" class="btn btn-sm btn-success">Add to Cart</a>
+          <a href="{{url_for('pet_bp.adopt_pet', id = pet.id)}}" class="btn btn-sm btn-warning mx-1">Adopt</a>
+        </div>
+      </div>
+    {%endfor%}
+</div>
+{%else%}
+<h1>You are Not Logged in</h1>
+{%endif%}
+
+{%endblock main%}
