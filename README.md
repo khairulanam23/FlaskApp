@@ -145,5 +145,4 @@ This project is licensed under the MIT License.
 ---
 
 ## Contributors
-- Mohammad Khairul Anam
-  [khairulanam23](https://github.com/khairulanam23) - Developer
+- [Mohammad Khairul Anam](https://github.com/khairulanam23) - Developer
